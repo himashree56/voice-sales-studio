@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101817" />
+  <title>Voice Sales Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Voice Sales Studio home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>voice<span class="brand-light">desk</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="studio"><span class="nav-icon">◉</span> Live studio</button>
+        <button class="nav-item" data-view="history"><span class="nav-icon">◷</span> Call history <span class="nav-count" id="navCount">0</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-card"><span class="privacy-icon">◇</span><div><strong>Your calls stay yours</strong><p>Recordings and history are stored in this browser.</p></div></div>
+        <div class="profile"><div class="avatar">S</div><div><strong>Sales workspace</strong><small>Personal workspace</small></div><span class="dots">···</span></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong id="breadcrumb">Live studio</strong></div><div class="topbar-right"><span class="secure-pill"><span></span> Private session</span><button class="icon-button" id="helpButton" aria-label="Help">?</button></div></header>
+      <section class="page-view" id="studioView">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> CONVERSATIONAL AI</div><h1>Live sales studio</h1><p class="subheading">A thoughtful conversation, from first hello to next step.</p></div><div class="today-date" id="todayDate"></div></div>
+        <div class="workspace-grid">
+          <section class="call-panel card">
+            <div class="panel-top"><div><div class="section-kicker">LIVE CALL</div><h2>Conversation room</h2></div><div class="call-status" id="callStatus"><span></span> Ready</div></div>
+            <div class="call-visual" id="callVisual"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="voice-core"><div class="voice-logo"><i></i><i></i><i></i><i></i></div></div><div class="visual-caption" id="visualCaption">Your AI sales assistant is ready</div><div class="visual-subcaption" id="visualSubcaption">Start a call when you’re ready</div></div>
+            <div class="call-meta"><div><span class="meta-label">DURATION</span><strong id="duration">00:00</strong></div><div class="audio-meter"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="recording-indicator" id="recordingIndicator"><span></span> Recording off</div></div>
+            <div class="consent-row"><label class="toggle"><input id="consentToggle" type="checkbox" /><span class="toggle-track"></span></label><div><strong>Record this conversation</strong><small>Ask for consent before recording. Audio stays on this device.</small></div><button class="info-button" id="consentInfo" aria-label="Recording consent information">i</button></div>
+            <div class="call-actions"><button class="button button-start" id="startCall"><span class="button-icon">▶</span> Start call</button><button class="button button-end" id="endCall" disabled><span class="button-icon">■</span> End call</button></div>
+            <div class="browser-note" id="browserNote"><span>ⓘ</span> Voice recognition works best in Chrome or Edge. You can also type replies below.</div>
+          </section>
+          <section class="transcript-panel card">
+            <div class="panel-top transcript-heading"><div><div class="section-kicker">LIVE TRANSCRIPT</div><h2>Conversation</h2></div><button class="text-button" id="clearChat">Clear</button></div>
+            <div class="conversation-context"><div class="contact-avatar"><span>✦</span></div><div><strong>Product discovery call</strong><small>AI assistant <span class="context-dot">·</span> English</small></div><select class="voice-select" id="voiceSelect" aria-label="Assistant voice"><option value="auto">Best voice</option></select></div>
+            <div class="messages" id="messages" aria-live="polite"><div class="empty-chat"><div class="empty-icon">◌</div><strong>Your conversation will appear here</strong><p>Start a call and your assistant will greet your customer.</p></div></div>
+            <form class="message-composer" id="messageForm"><button type="button" class="mic-button" id="micButton" aria-label="Start voice input">♩</button><input id="messageInput" type="text" placeholder="Type a response..." autocomplete="off" disabled /><button class="send-button" type="submit" aria-label="Send message" disabled>↑</button></form>
+          </section>
+        </div>
+        <div class="bottom-grid">
+          <section class="summary-card card"><div class="bottom-card-heading"><div><div class="section-kicker">CALL INSIGHTS</div><h2>Conversation summary</h2></div><span class="auto-badge">✦ AUTO-GENERATED</span></div><div class="summary-content" id="summaryContent"><div class="summary-placeholder"><span>✧</span><p>Your call summary, customer needs and next steps will be captured here when the conversation ends.</p></div></div></section>
+          <section class="status-card card"><div class="bottom-card-heading"><div><div class="section-kicker">LEAD OUTCOME</div><h2>Sales status</h2></div></div><div class="status-content" id="statusContent"><div class="status-empty"><span class="status-ring">—</span><div><strong>Waiting for conversation</strong><p>The final status will be assigned automatically.</p></div></div></div><div class="status-footer"><span>Powered by conversation signals</span><span class="signal-icon">⌁</span></div></section>
+        </div>
+      </section>
+      <section class="page-view history-view hidden" id="historyView">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR ACTIVITY</div><h1>Call history</h1><p class="subheading">Every conversation, recording and next step in one place.</p></div><div class="history-total"><strong id="historyTotal">0</strong><span>total calls</span></div></div>
+        <div class="history-toolbar card"><div class="search-box"><span>⌕</span><input id="historySearch" placeholder="Search conversations..." /></div><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option>Converted</option><option>Interested</option><option>Follow-up Required</option><option>Not Interested</option><option>Demo Requested</option><option>No Response</option></select></div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+      <footer class="app-footer"><span>Voice Desk <span class="footer-dot">·</span> Conversational sales, made human.</span><span>Built for clear, consent-first conversations</span></footer>
+    </main>
+  </div>
+  <dialog id="infoDialog"><div class="dialog-content"><button class="dialog-close" id="closeDialog">×</button><div class="dialog-symbol">◈</div><h2>Conversation recording</h2><p>Recording is optional and starts only after you turn it on and confirm consent. Always tell the other person that the call is being recorded before you begin.</p><p>Audio is saved locally in this browser. You can remove a call and its recording from Call history at any time.</p><button class="button button-start dialog-button" id="gotIt">Got it</button></div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
